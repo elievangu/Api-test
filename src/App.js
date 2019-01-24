@@ -12,11 +12,11 @@ class App extends React.Component {
     }
   }
   componentDidMount() {
-    axios.get(`https://swapi.co/api/people/1/.json`)
+    axios.get(`https://swapi.co/api/people/.json`)
     .then(
       res => {
         const datas = res.data;
-        this.setState({posts:datas});
+        this.setState({posts:datas.results});
         console.log(this.state.posts)
       }
     )
@@ -24,7 +24,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.state.posts.name}</h1>
+        <h1>Personnages</h1>
+        <ul>
+          {this.state.posts.map(post => <li key={post.name}>{post.name}</li>)}
+        </ul>
       </div>
     )
   }
