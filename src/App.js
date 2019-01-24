@@ -8,11 +8,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      page:4
     }
   }
   componentDidMount() {
-    axios.get(`https://swapi.co/api/people/.json`)
+    axios.get(`https://swapi.co/api/people/.json?page=${this.state.page}`)
     .then(
       res => {
         const datas = res.data;
@@ -21,6 +22,7 @@ class App extends React.Component {
       }
     )
   }
+
   render() {
     return (
       <div>
